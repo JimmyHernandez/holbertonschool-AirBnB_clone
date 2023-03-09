@@ -76,4 +76,4 @@ Update an object:
 (hbnb)
 ```
 
-![console](https://www.datasciencecentral.com/wp-content/uploads/2021/10/8784090497.jpeg)
+![consle](https://www.datasciencecentral.com/wp-content/uploads/2021/10/8784090497.jpeg)
