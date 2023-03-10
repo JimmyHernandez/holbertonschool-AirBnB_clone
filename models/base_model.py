@@ -22,10 +22,12 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
+            models.storage.new(self)
             
     def save(self):
         """Type method save"""
         self.updated_at = datetime.today()
+        models.storage.save()
      
     def to_dict(self):
         """Type method to_dict"""
