@@ -1,28 +1,24 @@
-#!/usr/bin/python3
-"""Write a program called console.py that contain the entry point of the\
-    command interpreter."""
-
+#!/usr/bin/env python3
+"""This module implements the command interpreter."""
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """It's a command line interpreter\
-        that inherits from the cmd module."""
+    """This class defines the command interpreter."""
 
     prompt = '(hbnb)'
 
-    def do_quit(self, line):
+    def do_quit(self, arg):
         """Quit command to exit the program."""
         return True
 
-    def emptyline(self):
-        """Do nothing."""
-        pass
-
-    def do_EOF(self, line):
-        """Print the string "EOF" and then exits the program\
-            :param line: The line of text that the user entered."""
+    def do_EOF(self, arg):
+        """EOF command to exit the program."""
         return True
+
+    def emptyline(self):
+        """Do nothing on empty line."""
+        pass
 
 
 if __name__ == '__main__':
