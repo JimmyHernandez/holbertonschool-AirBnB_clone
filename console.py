@@ -1,10 +1,15 @@
 #!/usr/bin/python3
-"""_summary"""
+""" Python Interpreter"""
 
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
+    """
+If the user types 'x' or 'q', then quit the program.
+param line: The entire string that the user has entered
+return: True
+    """
 
     prompt = '(hbnb) '
 
@@ -18,6 +23,7 @@ class HBNBCommand(cmd.Cmd):
             return self.do_quit(line)
 
     do_EOF = do_quit
+    help_EOF = help_exit
 
 
 if __name__ == '__main__':
