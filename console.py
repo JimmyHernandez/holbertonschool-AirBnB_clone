@@ -5,8 +5,7 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-If the user types 'x' or 'q', then quit the program.
+    """If the user types 'x' or 'q', then quit the program.
 param line: The entire string that the user has entered
 return: True
     """
