@@ -1,10 +1,10 @@
-#!/usr/bin/python3
-"""Python Interpreter."""
+#!/usr/bin/env python3
+"""This module implements the command interpreter."""
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """Class that defines the command interpreter."""
+    """This class defines the command interpreter."""
 
     prompt = '(hbnb)'
 
@@ -13,11 +13,11 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_EOF(self, arg):
-        """End of file command."""
+        """EOF command to exit the program."""
         return True
 
     def emptyline(self):
-        """Empty line."""
+        """Do nothing on empty line."""
         pass
 
 
