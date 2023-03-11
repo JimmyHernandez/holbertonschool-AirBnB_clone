@@ -4,10 +4,7 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """If the user types 'x' or 'q', then quit the program.
-param line: The entire string that the user has entered
-return: True
-    """
+    """Class that defines the command interpreter."""
 
     prompt = '(hbnb) '
 
@@ -20,7 +17,7 @@ return: True
         return True
 
     def emptyline(self):
-        """Pass is a null operation; nothing happens when it executes."""
+        """Empty line."""
         pass
 
 
