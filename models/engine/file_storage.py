@@ -17,14 +17,14 @@ class FileStorage:
 
     def new(self, obj):
         """Type method new"""
-        FSobjdict = FileStorage.__objects
+        F_objdict = FileStorage.__objects
         object_name = obj.__class__.__name__
-        FSobjdict["{}.{}".format(object_name, obj.id)] = obj
+        F_objdict["{}.{}".format(object_name, obj.id)] = obj
 
     def save(self):
         """Type method save"""
-        FSobjdict = FileStorage.__objects
-        obj_dict = {obj: FSobjdict[obj].to_dict() for obj in FSobjdict.keys()}
+        F_objdict = FileStorage.__objects
+        obj_dict = {obj: F_objdict[obj].to_dict() for obj in F_objdict.keys()}
         with open(FileStorage.__file_path, "w") as f:
             json.dump(obj_dict, f)
 
