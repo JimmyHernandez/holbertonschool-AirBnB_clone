@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Update models/__init__.py: to create a unique 
+"""Update models/__init__.py: to create a unique
    FileStorage instance for your application
 """
 from models.engine.file_storage import FileStorage

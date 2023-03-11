@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Write a class BaseModel that defines all 
+"""Write a class BaseModel that defines all
    common attributes/methods for other classes:
 """
 import models
@@ -10,13 +10,13 @@ from datetime import datetime
 class BaseModel:
     """
     This class is a base class for all models.
-    """ 
+    """
 
     def __init__(self, *args, **kwargs):
         """
         A constructor.
         """
-       
+
         timeformat = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) != 0:
             for key, val in kwargs.items():
@@ -29,20 +29,20 @@ class BaseModel:
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
             models.storage.new(self)
-            
+
     def save(self):
         """
         It saves the current state of the object.
         """
-        
+
         self.updated_at = datetime.today()
         models.storage.save()
-     
+
     def to_dict(self):
         """
         It converts the object to a dictionary.
         """
-        
+
         rt_dict = self.__dict__.copy()
         rt_dict["created_at"] = self.created_at.isoformat()
         rt_dict["updated_at"] = self.updated_at.isoformat()
@@ -53,6 +53,6 @@ class BaseModel:
         """
         It returns a string representation of the object.
         """
-        
+
         class_name = self.__class__.__name__
         return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
