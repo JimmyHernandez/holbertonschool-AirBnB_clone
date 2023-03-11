@@ -14,15 +14,17 @@ return: True
     prompt = '(hbnb) '
 
     def do_quit(self, line):
-        """Quit command to exit the program
-
-            """
+        """Quit command to exit the program."""
         return True
 
     def do_EOF(self, line):
-        """End of file command"""
+        """End of file command."""
         if line == 'x' or line == 'q':
             return self.do_quit(line)
+
+    def emptyline(self):
+        """Pass is a null operation; nothing happens when it executes.       """
+        pass
 
     do_EOF = do_quit
 
