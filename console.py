@@ -31,7 +31,6 @@ class HBNBCommand(cmd.Cmd):
         :param line: The line of text that the user entered
         """
         
-        print()
         return True
 
     
