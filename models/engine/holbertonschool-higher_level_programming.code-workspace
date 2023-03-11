@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "../../../holbertonschool-higher_level_programming"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"githubPullRequests.ignoredPullRequestBranches": [
+			"main"
+		]
+	}
+}
