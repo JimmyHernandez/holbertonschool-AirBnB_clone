@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ Python Interpreter"""
-
 import cmd
 
 
@@ -12,11 +11,11 @@ return: True
 
     prompt = '(hbnb) '
 
-    def do_quit(self, line):
+    def do_quit(self, arg):
         """Quit command to exit the program."""
         return True
 
-    def do_EOF(self, line):
+    def do_EOF(self, arg):
         """End of file command."""
         return True
 
