@@ -24,6 +24,6 @@ class HBNBCommand(cmd.Cmd):
             :param line: The line of text that the user entered."""
         return True
 
-
 if __name__ == '__main__':
     HBNBCommand().cmdloop() 
+    
