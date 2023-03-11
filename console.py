@@ -23,7 +23,6 @@ return: True
             return self.do_quit(line)
 
     do_EOF = do_quit
-    help_EOF = help_exit
 
 
 if __name__ == '__main__':
