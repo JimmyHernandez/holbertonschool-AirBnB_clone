@@ -19,11 +19,10 @@ return: True
 
     def do_EOF(self, line):
         """End of file command."""
-        if line == 'x' or line == 'q':
-            return self.do_quit(line)
+        return True
 
     def emptyline(self):
-        """Pass is a null operation; nothing happens when it executes.       """
+        """Pass is a null operation; nothing happens when it executes."""
         pass
 
 
