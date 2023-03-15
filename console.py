@@ -24,8 +24,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_EOF(self, line):
-        """Print the string "EOF" and then exits the program\
-           :param line: The line of text that the user entered."""
+        """Print the string "EOF" and then exits the program."""
         return True
 
     def do_create(self, line):
@@ -42,8 +41,7 @@ class HBNBCommand(cmd.Cmd):
                 print(base_inst.id)
 
     def do_show(self, line):
-        """Print the value of the variable named by the argument
-        :param line: The line of text that the user entered."""
+        """Print the value of the variable named."""
 
         arg = line.split()
         obj_dict = storage.all()
@@ -59,9 +57,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj_dict["{}.{}".format(arg[0], arg[1])])
 
     def do_destroy(self, line):
-        """It destroys the current
-        room and all the items in it
-        :param line: The line of text that the user entered.
+        """It destroys the current room and all the items in it.
         """
         arg = line.split()
         obj_dict = storage.all()
@@ -79,10 +75,49 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, arg):
-        pass
+        """It's a function that prints all the instances of a class."""
+        list_of_str = arg.split()
+        obj = storage.all()
+
+        for key in obj.keys():
+            if len(list_of_str) >= 1:
+                if list_of_str[0] not in classes:
+                    print("** class doesn't exist **")
+                    break
+                if obj[key].__class__.__name__ == list_of_str[0]:
+                    print(obj[key])
+            else:
+                print(obj[key])
 
     def do_update(self, arg):
-        pass
+        """It's a function that updates an instance based on the class name and id."""
+
+        list_of_str = arg.split()
+
+        if len(list_of_str) == 0:
+            print("** class name missing **")
+        elif list_of_str[0] not in classes:
+            print("** class doesn't exist **")
+        elif len(list_of_str) == 1:
+            print("** instance id missing **")
+
+        else:
+            obj_key = list_of_str[0] + "." + list_of_str[1]
+            all_obj = storage.all()
+            the_instance = 0
+
+            for key, value in all_obj.items():
+                if key == obj_key:
+                    the_instance = value
+
+            if not the_instance:
+                print("** no instance found **")
+            elif len(list_of_str) == 2:
+                print("** attribute name missing **")
+            elif len(list_of_str) == 3:
+                print("** value missing **")
+            else:
+                setattr(the_instance, list_of_str[2], list_of_str[3])
 
 
 if __name__ == '__main__':
