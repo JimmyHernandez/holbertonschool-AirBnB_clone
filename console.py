@@ -6,13 +6,14 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 
+classes = {"BaseModel": BaseModel}
+
 
 class HBNBCommand(cmd.Cmd):
     """It's a command line interpreter\
         that inherits from the cmd module."""
 
     prompt = '(hbnb)'
-    __classes = {'BaseModel'}
 
     def do_quit(self, line):
         """Quit command to exit the program."""
@@ -27,13 +28,18 @@ class HBNBCommand(cmd.Cmd):
            :param line: The line of text that the user entered."""
         return True
 
-    def do_create(self, *args):
-        """Create a new instance of the class."""
-
-        if not args:
-            print('**class name missing**')
-        elif args not in HBNBCommand.__classes:
-            print('** class doesn\'t exist **')
+    def do_create(self, line):
+        """Creates a new instance of BaseModel."""
+        if len(line) == 0:
+            print("** class name missing **")
+        else:
+            if line not in classes:
+                print("** class doesn't exist **")
+            else:
+                str = line + "()"
+                base_inst = eval(str)
+                base_inst.save()
+                print(base_inst.id)
 
     def do_show(self, line):
         """Print the value of the variable named by the argument
@@ -43,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in HBNBCommand.__classes:
+        elif arg[0] not in classes:
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
@@ -62,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
 
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in HBNBCommand.__classes:
+        elif arg[0] not in classes:
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
