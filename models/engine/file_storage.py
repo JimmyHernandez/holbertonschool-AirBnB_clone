@@ -3,13 +3,6 @@
 
 import os.path
 import json
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
 
 
 class FileStorage:
@@ -36,6 +29,25 @@ class FileStorage:
 
     def reload(self):
         """Type method reaload"""
+
+        from models.base_model import BaseModel
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+        from models.user import User
+
+        dic = {
+            "BaseModel": BaseModel,
+            "User": User,
+            "Amenity": Amenity,
+            "Place": Place,
+            "City": City,
+            "State": State,
+            "Review": Review
+        }
+
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path) as f:
                 obj_dict = json.load(f)
@@ -43,4 +55,3 @@ class FileStorage:
                     cls_d = obj["__class__"]
                     del obj["__class__"]
                     self.new(eval(cls_d)(**obj))
-            return
