@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""The `State` class inherits from the `BaseModel` class, and has a `name` attribute."""
+"""The `State` class inherits from the
+ `BaseModel` class, and has a `name` attribute."""
 from models.base_model import BaseModel
 
 

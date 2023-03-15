@@ -6,8 +6,8 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """BaseModel has four attributes: email, password, first_name, and last_name."""
-
+    """BaseModel has four attributes: email,
+    password, first_name, and last_name."""
     email = ""
     password = ""
     first_name = ""
