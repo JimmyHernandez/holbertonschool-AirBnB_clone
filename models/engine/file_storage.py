@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Type module FileStorage"""
+"""Type module FileStorage."""
 
-import os.path
 import json
+import os.path
 from models.base_model import BaseModel
 from models.state import State
 from models.city import City
@@ -14,6 +14,7 @@ from models.user import User
 
 class FileStorage:
     """Type class File Storage."""
+
     __file_path = "file.json"
     __objects = {}
 
@@ -28,14 +29,14 @@ class FileStorage:
         F_objdict["{}.{}".format(object_name, obj.id)] = obj
 
     def save(self):
-        """Type method save"""
+        """Type method save."""
         F_objdict = FileStorage.__objects
         obj_dict = {obj: F_objdict[obj].to_dict() for obj in F_objdict.keys()}
         with open(FileStorage.__file_path, "w") as f:
             json.dump(obj_dict, f, indent=2)
 
     def reload(self):
-        """Type method reaload"""
+        """Type method reaload."""
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path) as f:
                 obj_dict = json.load(f)
