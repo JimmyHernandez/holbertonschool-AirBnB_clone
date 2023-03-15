@@ -29,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, line):
-        """Creates a new instance of BaseModel."""
+        """Create a new instance of BaseModel."""
         if len(line) == 0:
             print("** class name missing **")
         else:
@@ -42,9 +42,7 @@ class HBNBCommand(cmd.Cmd):
                 print(base_inst.id)
 
     def do_show(self, line):
-        """Print the value of the variable named by the argument
-        :param line: The line of text that the user entered."""
-
+        """Print the value of the variable named by the argument."""
         arg = line.split()
         obj_dict = storage.all()
         if len(arg) == 0:
@@ -59,10 +57,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj_dict["{}.{}".format(arg[0], arg[1])])
 
     def do_destroy(self, line):
-        """It destroys the current
-        room and all the items in it
-        :param line: The line of text that the user entered.
-        """
+        """Destroys the current room and all the items in it."""
         arg = line.split()
         obj_dict = storage.all()
 
@@ -78,11 +73,46 @@ class HBNBCommand(cmd.Cmd):
             del obj_dict["{}.{}".format(arg[0], arg[1])]
             storage.save()
 
-    def do_all(self, arg):
-        pass
+    def do_all(self, line):
+        """Print all str representations of all instances."""
+        objs = []
+        obj_dict = storage.all()
 
-    def do_update(self, arg):
-        pass
+        if len(line) == 0:
+            for key, value in obj_dict.items():
+                objs.append(value.__str__())
+            print(objs)
+
+        elif line not in classes:
+            print("** class doesn't exist **")
+
+        else:
+            for key, value in obj_dict.items():
+                if key.startswith(line+""):
+                    objs.append(str(value))
+            print(objs)
+
+    def do_update(self, line):
+        """Update the line."""
+        arg = line.split(" ")
+        obj_dict = storage.all()
+
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif arg[0] not in classes:
+            print("** class doesn't exist **")
+        elif len(arg) == 1:
+            print("** instance id missing **")
+        elif "{}.{}".format(arg[0], arg[1]) not in obj_dict:
+            print("** no instance found **")
+        elif len(arg) == 2:
+            print("** attribute name missing **")
+        elif len(arg) == 3:
+            print("** value missing **")
+        else:
+            key = "{}.{}".format(arg[0], arg[1])
+            setattr(obj_dict[key], arg[2], arg[3])
+            obj_dict[key].save()
 
 
 if __name__ == '__main__':

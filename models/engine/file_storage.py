@@ -4,19 +4,25 @@
 import os.path
 import json
 from models.base_model import BaseModel
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models.user import User
 
 
 class FileStorage:
-    """Type class File Storage"""
+    """Type class File Storage."""
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """Type method all"""
+        """Type method all."""
         return FileStorage.__objects
 
     def new(self, obj):
-        """Type method new"""
+        """Type method new."""
         F_objdict = FileStorage.__objects
         object_name = obj.__class__.__name__
         F_objdict["{}.{}".format(object_name, obj.id)] = obj

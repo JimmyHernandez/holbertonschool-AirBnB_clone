@@ -6,5 +6,11 @@
     "name": "My_First_Model",
     "my_number": 89,
     "__class__": "BaseModel"
+  },
+  "BaseModel.285115ba-10ff-4077-859e-72ece9e910c6": {
+    "id": "285115ba-10ff-4077-859e-72ece9e910c6",
+    "created_at": "2023-03-14T20:30:41.011502",
+    "updated_at": "2023-03-14T20:30:41.011519",
+    "__class__": "BaseModel"
   }
 }
