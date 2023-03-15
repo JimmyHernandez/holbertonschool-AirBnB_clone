@@ -57,7 +57,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Print the value of the variable named."""
-
         arg = line.split()
         obj_dict = storage.all()
         if len(arg) == 0:
@@ -76,7 +75,6 @@ class HBNBCommand(cmd.Cmd):
         """
         arg = line.split()
         obj_dict = storage.all()
-
         if len(arg) == 0:
             print("** class name missing **")
         elif arg[0] not in classes:
@@ -105,8 +103,8 @@ class HBNBCommand(cmd.Cmd):
                 print(obj[key])
 
     def do_update(self, arg):
-        """It's a function that updates an instance based on the class name and id."""
-
+        """It's a function that updates an instance
+          based on the class name and id."""
         list_of_str = arg.split()
 
         if len(list_of_str) == 0:
