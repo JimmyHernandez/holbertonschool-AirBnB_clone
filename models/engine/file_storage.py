@@ -4,11 +4,29 @@
 import os.path
 import json
 
+from models.base_model import BaseModel
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models.user import User
+
 
 class FileStorage:
     """Type class File Storage"""
     __file_path = "file.json"
     __objects = {}
+
+    dic = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "Amenity": Amenity,
+        "Place": Place,
+        "City": City,
+        "State": State,
+        "Review": Review
+    }
 
     def all(self):
         """Type method all"""
@@ -29,25 +47,6 @@ class FileStorage:
 
     def reload(self):
         """Type method reaload"""
-
-        from models.base_model import BaseModel
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.place import Place
-        from models.review import Review
-        from models.user import User
-
-        dic = {
-            "BaseModel": BaseModel,
-            "User": User,
-            "Amenity": Amenity,
-            "Place": Place,
-            "City": City,
-            "State": State,
-            "Review": Review
-        }
-
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path) as f:
                 obj_dict = json.load(f)
