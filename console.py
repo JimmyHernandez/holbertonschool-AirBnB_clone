@@ -13,14 +13,14 @@ from models.place import Place
 from models.review import Review
 
 
-classes = {
-    "BaseModel": BaseModel,
-    "User": User,
-    "State": State,
-    "city": City,
-    "Amenity": Amenity,
-    "Place": Place,
-    "Review": Review
+CLASSES = {
+    'BaseModel',
+    'User',
+    'State',
+    'City',
+    'Amenity',
+    'Place',
+    'Review',
 }
 
 
@@ -40,6 +40,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """Print the string "EOF" and then exits the program."""
+        print("EOF")
         return True
 
     def do_create(self, line):
@@ -47,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             print("** class name missing **")
         else:
-            if line not in classes:
+            if line not in CLASSES:
                 print("** class doesn't exist **")
             else:
                 str = line + "()"
@@ -61,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in classes:
+        elif arg[0] not in CLASSES:
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
@@ -71,19 +72,25 @@ class HBNBCommand(cmd.Cmd):
             print(obj_dict["{}.{}".format(arg[0], arg[1])])
 
     def do_destroy(self, line):
-        """Destroys the current room and all the items in it."""
-        arg = line.split()
+        """Destroys the current room and all items in it."""
+        args = line.split()
         obj_dict = storage.all()
-        if len(arg) == 0:
+
+        if not line:
             print("** class name missing **")
-        elif arg[0] not in classes:
+            return
+        elif not args[0] or args[0] not in CLASSES:
             print("** class doesn't exist **")
-        elif len(arg) == 1:
+            return
+        elif len(args) < 2:
             print("** instance id missing **")
-        elif "{}.{}".format(arg[0], arg[1]) not in obj_dict.keys():
+            return
+        instance_key = "{}.{}".format(args[0], args[1])
+        if instance_key not in obj_dict:
             print("** no instance found **")
+            return
         else:
-            del obj_dict["{}.{}".format(arg[0], arg[1])]
+            del obj_dict[instance_key]
             storage.save()
 
     def do_all(self, line):
@@ -91,39 +98,42 @@ class HBNBCommand(cmd.Cmd):
         arg = line.split()
         obj_dict = storage.all()
         res = []
+
         if not arg:
-            for key, obj in obj_dict.items():
-                res.append(str(obj))
-        elif arg[0] not in classes:
+            res = [str(obj_dict[obj]) for obj in obj_dict.keys()]
+        elif arg[0] not in CLASSES:
             print("** class doesn't exist **")
         else:
-            for key, obj in obj_dict.items():
-                if obj.__class__.__name__ == arg[0]:
-                    res.append(str(obj))
-
+            res = [str(obj_dict[obj]) for obj in obj_dict
+                   if obj.startswith(arg[0])]
         print(res)
 
     def do_update(self, line):
-        """Upates an instance by adding/updating a key-value pair."""
+        """Update an instance by adding/updating a key-value pair."""
         args = line.split()
         obj_dict = storage.all()
 
-        if len(args) == 0:
+        if not line:
             print("** class name missing **")
-        elif args[0] not in classes:
+            return
+        elif not args[0] or args[0] not in CLASSES:
             print("** class doesn't exist **")
-        elif len(args) == 1:
+            return
+        elif len(args) < 2:
             print("** instance id missing **")
-        elif ("{}.{}".format(args[0], args[1])) not in obj_dict.keys():
+            return
+        instance_key = "{}.{}".format(args[0], args[1])
+        if instance_key not in obj_dict:
             print("** no instance found **")
-        elif len(args) == 2:
+            return
+        elif len(args) < 3:
             print("** attribute name missing **")
-        elif len(args) == 3:
+            return
+        elif len(args) < 4:
             print("** value missing **")
+            return
         else:
-            obj = obj_dict["{}.{}".format(args[0], args[1])]
-            setattr(obj, args[2], args[3])
-            obj.save()
+            setattr(obj_dict[instance_key], args[2], args)
 
 
 if __name__ == '__main__':
