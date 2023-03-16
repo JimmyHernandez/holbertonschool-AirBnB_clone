@@ -10,6 +10,6 @@ class TestState(unittest.TestCase):
     a = State()
 
     def test_class_exists(self):
-        """tests if class exists"""
+        """Test if class exists."""
         res = "<class 'models.state.State'>"
         self.assertEqual(str(type(self.a)), res)
