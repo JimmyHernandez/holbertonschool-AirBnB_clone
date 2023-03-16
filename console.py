@@ -2,6 +2,8 @@
 """Write a program called console.py that contain the entry point of the\
     command interpreter."""
 
+
+import json
 import cmd
 from models import storage
 from models.base_model import BaseModel
