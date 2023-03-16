@@ -5,11 +5,11 @@ from models.place import Place
 
 
 class TestPlace(unittest.TestCase):
-    """Tests instances and methods from Place class"""
+    """Test instances and methods from Place class."""
 
     a = Place()
 
     def test_class_exists(self):
-        """tests if class exists"""
+        """Test if class exists."""
         res = "<class 'models.place.Place'>"
         self.assertEqual(str(type(self.a)), res)
