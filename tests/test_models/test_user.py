@@ -9,9 +9,7 @@ from models.engine.file_storage import FileStorage
 class TestUser(unittest.TestCase):
     """Test instances and methods from User class."""
 
-    def setUp(self):
-        """Set up the test for testing users."""
-        FileStorage._FileStorage__file_path = "file.json"
+    a = User()
 
     def test_class_exists(self):
         """Test if class exists."""
