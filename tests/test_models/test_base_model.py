@@ -16,12 +16,12 @@ class TestBaseModel(unittest.TestCase):
 
     def test_inheritance(self):
         """Tests inheritance."""
-        amenity = BaseModel()
+        basemodel = BaseModel()
         self.assertIsInstance(BaseModel, BaseModel)
 
     def test_name_attribute(self):
         """Tests the name attribute."""
-        amenity = BaseModel()
+        basemodel = BaseModel()
         self.assertTrue(hasattr(BaseModel, 'name'))
         self.assertEqual(BaseModel.name, '')
 

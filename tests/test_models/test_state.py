@@ -17,12 +17,12 @@ class TestState(unittest.TestCase):
 
     def test_inheritance(self):
         """Tests inheritance."""
-        amenity = State()
+        state = State()
         self.assertIsInstance(State, BaseModel)
 
     def test_name_attribute(self):
         """Tests the name attribute."""
-        amenity = State()
+        state = State()
         self.assertTrue(hasattr(State, 'name'))
         self.assertEqual(State.name, '')
 

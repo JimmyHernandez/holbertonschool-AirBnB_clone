@@ -17,12 +17,12 @@ class TestCity(unittest.TestCase):
 
     def test_inheritance(self):
         """Tests inheritance."""
-        amenity = City()
+        state = City()
         self.assertIsInstance(City, BaseModel)
 
     def test_name_attribute(self):
         """Tests the name attribute."""
-        amenity = City()
+        state = City()
         self.assertTrue(hasattr(City, 'name'))
         self.assertEqual(City.name, '')
 
