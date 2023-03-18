@@ -13,3 +13,7 @@ class TestBaseModel(unittest.TestCase):
         """Test if class exists."""
         res = "<class 'models.base_model.BaseModel'>"
         self.assertEqual(str(type(self.a)), res)
+
+
+if __name__ == '__main__':
+    unittest.main()
