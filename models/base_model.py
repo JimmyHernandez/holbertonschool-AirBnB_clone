@@ -25,6 +25,11 @@ class BaseModel:
             self.updated_at = datetime.today()
             models.storage.new(self)
 
+    def __str__(self):
+        """Return a string representation of the object."""
+        class_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
+
     def save(self):
         """Save the current state of the object."""
         self.updated_at = datetime.today()
@@ -37,8 +42,3 @@ class BaseModel:
         rt_dict["updated_at"] = self.updated_at.isoformat()
         rt_dict["__class__"] = self.__class__.__name__
         return rt_dict
-
-    def __str__(self):
-        """Return a string representation of the object."""
-        class_name = self.__class__.__name__
-        return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
