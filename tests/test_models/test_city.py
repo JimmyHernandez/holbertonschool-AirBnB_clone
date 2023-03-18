@@ -2,6 +2,7 @@
 """Test for City Class."""
 import unittest
 from models.city import City
+from models.base_model import BaseModel
 
 
 class TestCity(unittest.TestCase):
@@ -13,6 +14,17 @@ class TestCity(unittest.TestCase):
         """Test if class exists."""
         res = "<class 'models.city.City'>"
         self.assertEqual(str(type(self.a)), res)
+
+    def test_inheritance(self):
+        """Tests inheritance."""
+        amenity = City()
+        self.assertIsInstance(City, BaseModel)
+
+    def test_name_attribute(self):
+        """Tests the name attribute."""
+        amenity = City()
+        self.assertTrue(hasattr(City, 'name'))
+        self.assertEqual(City.name, '')
 
 
 if __name__ == '__main__':

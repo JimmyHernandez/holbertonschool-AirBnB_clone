@@ -14,6 +14,17 @@ class TestBaseModel(unittest.TestCase):
         res = "<class 'models.base_model.BaseModel'>"
         self.assertEqual(str(type(self.a)), res)
 
+    def test_inheritance(self):
+        """Tests inheritance."""
+        amenity = BaseModel()
+        self.assertIsInstance(BaseModel, BaseModel)
+
+    def test_name_attribute(self):
+        """Tests the name attribute."""
+        amenity = BaseModel()
+        self.assertTrue(hasattr(BaseModel, 'name'))
+        self.assertEqual(BaseModel.name, '')
+
 
 if __name__ == '__main__':
     unittest.main()

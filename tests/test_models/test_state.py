@@ -2,6 +2,7 @@
 """Test for State Class."""
 import unittest
 from models.state import State
+from models.base_model import BaseModel
 
 
 class TestState(unittest.TestCase):
@@ -13,6 +14,17 @@ class TestState(unittest.TestCase):
         """Test if class exists."""
         res = "<class 'models.state.State'>"
         self.assertEqual(str(type(self.a)), res)
+
+    def test_inheritance(self):
+        """Tests inheritance."""
+        amenity = State()
+        self.assertIsInstance(State, BaseModel)
+
+    def test_name_attribute(self):
+        """Tests the name attribute."""
+        amenity = State()
+        self.assertTrue(hasattr(State, 'name'))
+        self.assertEqual(State.name, '')
 
 
 if __name__ == '__main__':
