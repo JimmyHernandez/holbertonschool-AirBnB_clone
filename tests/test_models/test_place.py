@@ -10,6 +10,7 @@ class TestPlace(unittest.TestCase):
     """Test instances and methods from Place class."""
 
     def setUp(self):
+        """Set up the test case."""
         self.a = Place()
 
     def test_class_exists(self):

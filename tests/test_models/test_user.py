@@ -2,12 +2,7 @@
 """Test for User Class."""
 import unittest
 from models.user import User
-<<<<<<< HEAD
-=======
-import datetime
-from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
->>>>>>> 517009ce80c50368fe006fc42cea64fdc39c81c4
 
 
 class TestUser(unittest.TestCase):
