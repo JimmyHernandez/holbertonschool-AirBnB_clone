@@ -1,30 +1,45 @@
 #!/usr/bin/python3
-"""Test for Base Model Class."""
+"""Test class."""
 import unittest
 from models.base_model import BaseModel
-from models.amenity import Amenity
+import models
+from datetime import datetime
 
 
 class TestBaseModel(unittest.TestCase):
-    """Test instances and methods from BaseModel class."""
+    """Test_instantiation."""
 
-    a = BaseModel()
+    def test_attributes(self):
+        """Test the attributes of the class."""
+        model = BaseModel()
+        self.assertIsInstance(model.id, str)
+        self.assertIsInstance(model.created_at, datetime)
+        self.assertIsInstance(model.updated_at, datetime)
 
-    def test_class_exists(self):
-        """Test if class exists."""
-        res = "<class 'models.base_model.BaseModel'>"
-        self.assertEqual(str(type(self.a)), res)
+    def test_str(self):
+        """Tests the str() function."""
+        model = BaseModel()
+        expected_output = "[{}] ({}) {}".format(
+            model.__class__.__name__, model.id, model.__dict__)
+        self.assertEqual(str(model), expected_output)
 
-    def test_inheritance(self):
-        """Tests inheritance."""
-        basemodel = BaseModel()
-        self.assertIsInstance(BaseModel, BaseModel)
+    def test_save(self):
+        """Saves the current state of the model."""
+        model = BaseModel()
+        prev_updated_at = model.updated_at
+        model.save()
+        self.assertNotEqual(model.updated_at, prev_updated_at)
 
-    def test_name_attribute(self):
-        """Tests the name attribute."""
-        amenity = Amenity()
-        self.assertTrue(hasattr(amenity, 'name'))
-        self.assertEqual(amenity.name, '')
+    def test_to_dict(self):
+        """Converts a `Test` object to a dictionary."""
+        model = BaseModel()
+        model_dict = model.to_dict()
+        self.assertIsInstance(model_dict, dict)
+        self.assertEqual(model_dict['__class__'], 'BaseModel')
+        self.assertIsInstance(datetime.fromisoformat(
+            model_dict['created_at']), datetime)
+        self.assertIsInstance(datetime.fromisoformat(
+            model_dict['updated_at']), datetime)
 
 
 if __name__ == '__main__':
