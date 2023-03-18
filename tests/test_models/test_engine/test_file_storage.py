@@ -9,10 +9,10 @@ import json
 
 
 class FileStorageTests(unittest.TestCase):
-    """ Suite of File Storage Tests """
+    """Suite of File Storage Tests."""
 
     my_model = BaseModel()
 
     def testClassInstance(self):
-        """ Check instance """
+        """Check instance."""
         self.assertIsInstance(storage, FileStorage)
