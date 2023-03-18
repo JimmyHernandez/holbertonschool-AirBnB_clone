@@ -15,15 +15,16 @@ class TestBaseModel(unittest.TestCase):
         res = "<class 'models.base_model.BaseModel'>"
         self.assertEqual(str(type(self.a)), res)
 
-    def test_attribute_types(self):
-        """Test attributes' data types."""
-        a = Amenity()
-        self.assertEqual(type(a.name), str)
+    def test_inheritance(self):
+        """Tests inheritance."""
+        basemodel = BaseModel()
+        self.assertIsInstance(BaseModel, BaseModel)
 
-    def test_has_attributes(self):
-        """Test if attributes exists."""
-        a = Amenity()
-        self.assertTrue(hasattr(a, "name"))
+    def test_name_attribute(self):
+        """Tests the name attribute."""
+        amenity = Amenity()
+        self.assertTrue(hasattr(amenity, 'name'))
+        self.assertEqual(amenity.name, '')
 
 
 if __name__ == '__main__':
