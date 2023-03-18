@@ -2,6 +2,12 @@
 """Test for User Class."""
 import unittest
 from models.user import User
+<<<<<<< HEAD
+=======
+import datetime
+from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+>>>>>>> 517009ce80c50368fe006fc42cea64fdc39c81c4
 
 
 class TestUser(unittest.TestCase):
@@ -37,6 +43,17 @@ class TestUser(unittest.TestCase):
         self.assertEqual(user_dict["first_name"], "John")
         self.assertEqual(user_dict["last_name"], "Doe")
         self.assertEqual(user_dict["__class__"], "User")
+
+    def test_inheritance(self):
+        """Tests inheritance."""
+        user = User()
+        self.assertIsInstance(User, BaseModel)
+
+    def test_name_attribute(self):
+        """Tests the name attribute."""
+        user = User()
+        self.assertTrue(hasattr(User, 'name'))
+        self.assertEqual(User.name, '')
 
 
 if __name__ == '__main__':

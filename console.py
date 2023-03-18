@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""Write a program called console.py that contain the entry point of the\
-    command interpreter."""
+"""The entry point of the command interpreter."""
 
 
 import json
@@ -27,7 +26,7 @@ CLASSES = {
 
 
 class HBNBCommand(cmd.Cmd):
-    """It's a command line interpreter\
+    """It's a command line interpreter
         that inherits from the cmd module."""
 
     prompt = '(hbnb)'
