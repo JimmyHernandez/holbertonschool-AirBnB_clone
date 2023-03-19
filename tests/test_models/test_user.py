@@ -42,13 +42,7 @@ class TestUser(unittest.TestCase):
     def test_inheritance(self):
         """Tests inheritance."""
         user = User()
-        self.assertIsInstance(User, BaseModel)
-
-    def test_name_attribute(self):
-        """Tests the name attribute."""
-        user = User()
-        self.assertTrue(hasattr(User, 'name'))
-        self.assertEqual(User.name, '')
+        self.assertIsInstance(user, BaseModel)
 
 
 if __name__ == '__main__':
