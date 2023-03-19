@@ -1,29 +1,51 @@
 #!/usr/bin/python3
-"""Test for Review class."""
+"""Unittest for review module."""
+import os
 import unittest
-from models.amenity import Amenity
+from models.review import Review
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
-class TestAmenity(unittest.TestCase):
-    """Test instances and methods from Amenity class."""
+class Test_Review(unittest.TestCase):
+    """Test for Review Class."""
+
+    m = Review()
 
     def setUp(self):
-        """Set up the test case."""
-        self.a = Amenity()
+        """Set up the test for testing Reviews."""
+        FileStorage._FileStorage__file_path = "test.json"
+        self.rev = Review()
+        self.rev.place_id = "666"
+        self.rev.user_id = "666"
+        self.rev.text = "666"
+        self.rev.save()
 
-    def test_class_exists(self):
-        """Tests that the class exists."""
-        res = "<class 'models.amenity.Amenity'>"
-        self.assertEqual(str(type(self.a)), res)
+    def test_atrr_type_review(self):
+        """Test attribute type for Review."""
+        self.assertEqual(type(self.m.place_id), str)
+        self.assertEqual(type(self.m.user_id), str)
+        self.assertEqual(type(self.m.text), str)
 
-    def test_name_attribute(self):
-        """Test the name attribute."""
-        self.assertTrue(hasattr(self.a, "name"))
-        self.assertEqual(self.a.name, "")
+    def test_attribute_place_id(self):
+        """Tests attr."""
+        self.assertEqual(hasattr(self.m, "place_id"), True)
+        self.assertEqual(hasattr(self.m, "user_id"), True)
+        self.assertEqual(hasattr(self.m, "text"), True)
 
-        self.a.name = "pool"
-        self.assertEqual(self.a.name, "pool")
+    def test_subcls_Review(self):
+        """Test subclass BaseModel."""
+        self.assertTrue(issubclass(self.rev.__class__, BaseModel), True)
+        self.assertIsInstance(self.rev, Review)
+
+    def test_docstring_Review(self):
+        """Checking for docstrings."""
+        self.assertIsNotNone(Review.__doc__)
+
+    def testpublic(self):
+        """Function that is used to test the public function."""
+        self.assertEqual(str, type(Review().id))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
