@@ -1,0 +1,13 @@
+@import "3-header.css";
+@import "3-footer.css";
+
+body {
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+}
